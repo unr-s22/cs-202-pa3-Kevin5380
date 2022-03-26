@@ -1,4 +1,8 @@
 #include "Money.h"
+Money::Money(){
+    dollars = 0;
+    cents = 0;
+}
 //parameterized constructor
 Money::Money(int newDollars, int newCents) {
 	dollars = newDollars;

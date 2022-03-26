@@ -2,7 +2,26 @@
 #include "Money.h"
 #include <iostream>
 
-int main() {
+using namespace std;
+
+int main(){
+    Account account(Money(300, 23));
+
+    cout << account << endl;
+
+    account.makeDeposit(Money(200, 00));
+    account.makeDeposit(Money(300, 24));
+    account.makeDeposit(Money(501, 12));
+
+    cout << account << endl;
+
+    account.makeWithdrawal(Money(300, 10));
+    account.makeWithdrawal(Money(201, 34));
+
+    cout << account << endl;
+
+    return 0;
+    
 	//testing that Money class works
 	//TODO: clean this up
 	Money m1(100,25);
@@ -22,5 +41,4 @@ int main() {
 	std::cout << "Greater than or equal to (true): " << (m2 >= m3) << std::endl;
 	std::cout << "Less than or equal to (false): " << (m1 <= m2) << std::endl;
 	std::cout << "Less than or equal to (true): " << (m2 <= m3) << std::endl;
-	return 0;
 }

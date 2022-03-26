@@ -1,11 +1,15 @@
 #include <iostream>
 #include <string>
 
+#ifndef MONEY_H
+#define MONEY_H
+
 class Money {
 private:
 	int dollars;
 	int cents;
 public:
+    Money();
 	//parameterized constructor
 	Money(int newDollars, int newCents);
 	//operator overloads
@@ -21,3 +25,5 @@ public:
 	
 	~Money(); //does nothing
 };
+
+#endif //MONEY_H
