@@ -34,7 +34,7 @@ ostream& operator << (std::ostream& out, Account& account){
     out << "--------------------" << endl;
 
     for(int i = 0; i < account.deposits.size(); i++){
-        out << "(" << i << ") " << account.deposits[i] << endl;
+        out << "(" << (i + 1) << ") " << account.deposits[i] << endl;
     }
 
     out << "--------------------------" << endl;
@@ -42,7 +42,7 @@ ostream& operator << (std::ostream& out, Account& account){
     out << "--------------------------" << endl;
 
     for(int i = 0; i < account.withdrawals.size(); i++){
-        out << "(" << i << ") " << account.withdrawals[i] << endl;
+        out << "(" << (i + 1) << ") " << account.withdrawals[i] << endl;
     }
 
     out << "----" << endl;
