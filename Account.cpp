@@ -6,14 +6,23 @@ Account::Account(Money money){
     balance = money;
 }
 
-void Account::makeDeposit(Money money){
-    deposits.push_back(money);
-    updateFlag = true;
+Money Account::getBalance(){
+    for(depositIndex; depositIndex < deposits.size(); depositIndex++){
+        balance + deposits[depositIndex];
+    }
+
+    for(withdrawalIndex; withdrawalIndex < withdrawals.size(); withdrawalIndex++){
+        balance - deposits[withdrawalIndex];
+    }
+
+    return balance;
 }
 
+void Account::makeDeposit(Money money){
+    deposits.push_back(money);
+}
 void Account::makeWithdrawal(Money money){
     withdrawals.push_back(money);
-    updateFlag = true;
 }
 
 ostream& operator << (std::ostream& out, const Account& account){

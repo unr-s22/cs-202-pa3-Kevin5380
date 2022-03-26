@@ -15,13 +15,13 @@ class Account{
 
         std::vector<Money> deposits;
         std::vector<Money> withdrawals;
-
-        bool updateFlag = false;
     public:
         Account(Money money);
 
         void makeDeposit(Money money);
         void makeWithdrawal(Money money);
+
+        Money getBalance();
 
         friend std::ostream& operator << (std::ostream& out, const Account& account);
 };
