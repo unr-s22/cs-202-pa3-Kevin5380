@@ -77,3 +77,8 @@ bool Money::operator!=(const Money rhs) {
 		return false;
 	}
 }
+
+std::ostream& operator << (std::ostream& out, const Money& money){
+    out << "$" << money.dollars << "." << money.cents;
+    return out;
+}

@@ -23,7 +23,7 @@ class Account{
 
         Money getBalance();
 
-        friend std::ostream& operator << (std::ostream& out, const Account& account);
+        friend std::ostream& operator << (std::ostream& out, Account& account);
 };
 
 #endif // ACCOUNT_H

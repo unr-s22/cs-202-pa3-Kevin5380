@@ -22,6 +22,8 @@ public:
 	bool operator<=(const Money rhs);
 	bool operator>=(const Money rhs);
 	bool operator!=(const Money rhs);
+
+    friend std::ostream& operator << (std::ostream& out, const Money& money);
 	
 	~Money(); //does nothing
 };

@@ -25,9 +25,9 @@ void Account::makeWithdrawal(Money money){
     withdrawals.push_back(money);
 }
 
-ostream& operator << (std::ostream& out, const Account& account){
+ostream& operator << (std::ostream& out, Account& account){
     out << "--------------------------" << endl;
-    out << "Current Balance: " << account.balance << endl;
+    out << "Current Balance: " << account.getBalance() << endl;
 
     out << "--------------------------" << endl;
     out << "Number of Deposits: " << account.deposits.size() << endl;
