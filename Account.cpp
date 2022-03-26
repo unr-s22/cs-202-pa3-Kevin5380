@@ -12,7 +12,7 @@ Money Account::getBalance(){
     }
 
     for(withdrawalIndex; withdrawalIndex < withdrawals.size(); withdrawalIndex++){
-        balance - deposits[withdrawalIndex];
+        balance - withdrawals[withdrawalIndex];
     }
 
     return balance;
