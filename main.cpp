@@ -7,17 +7,20 @@ using namespace std;
 int main(){
     Account account(Money(300, 23));
 
+    account.getBalance();
     cout << account << endl;
 
     account.makeDeposit(Money(200, 00));
     account.makeDeposit(Money(300, 24));
     account.makeDeposit(Money(501, 12));
 
+    account.getBalance();
     cout << account << endl;
 
     account.makeWithdrawal(Money(300, 10));
     account.makeWithdrawal(Money(201, 34));
 
+    account.getBalance();
     cout << account << endl;
 
     return 0;
