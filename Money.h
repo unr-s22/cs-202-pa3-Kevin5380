@@ -9,13 +9,13 @@ private:
 	int dollars;
 	int cents;
 public:
+	//default constructor
     Money();
 	//parameterized constructor
 	Money(int newDollars, int newCents);
 	//operator overloads
-	//TODO: <<, >>
-	float operator+(const Money rhs);
-	float operator-(const Money rhs);
+	Money operator+(const Money rhs);
+	Money operator-(const Money rhs);
 	bool operator==(const Money rhs);
 	bool operator<(const Money rhs);
 	bool operator>(const Money rhs);

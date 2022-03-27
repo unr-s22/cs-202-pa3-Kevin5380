@@ -1,4 +1,5 @@
 #include "Money.h"
+//default constructor
 Money::Money(){
     dollars = 0;
     cents = 0;
@@ -11,21 +12,32 @@ Money::Money(int newDollars, int newCents) {
 //destructor
 Money::~Money() {}
 //operator overloads
-//TODO: <<, >>
-float Money::operator+(const Money rhs) {
-	float amt1 = float(dollars) + 0.01*float(cents);
-	float amt2 = float(rhs.dollars) + 0.01*float(rhs.cents);
-	return amt1 + amt2;
+Money Money::operator+(const Money rhs) {
+	int new_cents = cents + rhs.cents;
+	int new_dollars = dollars + rhs.dollars;
+	if (new_cents > 100) {
+		new_cents -= 100;
+		new_dollars += 1;
+	}
+	return Money(new_dollars, new_cents);
 }
 //TODO: round off the value to 2 decimal places
-float Money::operator-(const Money rhs) {
-	float amt1 = float(dollars) + 0.01*float(cents);
-	float amt2 = float(rhs.dollars) + 0.01*float(rhs.cents);
-	return amt1 - amt2;
+Money Money::operator-(const Money rhs) {
+	/*
+	int amt1 = 100*dollars + cents;
+	int amt2 = 100*rhs.dollars + rhs.cents;
+	return (float(amt1) - amt2)/100*/
+	int new_cents = cents - rhs.cents;
+	int new_dollars = dollars - rhs.dollars;
+	if (new_cents < 0) {
+		new_cents += 100;
+		new_dollars -= 1;
+	}
+	return Money(new_dollars, new_cents);
 }
 bool Money::operator==(const Money rhs) {
-	float amt1 = float(dollars) + 0.01*float(cents);
-	float amt2 = float(rhs.dollars) + 0.01*float(rhs.cents);
+	int amt1 = 100*dollars + cents;
+	int amt2 = 100*rhs.dollars + rhs.cents;
 	if (amt1 == amt2) {
 		return true;
 	}
@@ -34,8 +46,8 @@ bool Money::operator==(const Money rhs) {
 	}
 }
 bool Money::operator<(const Money rhs) {
-	float amt1 = float(dollars) + 0.01*float(cents);
-	float amt2 = float(rhs.dollars) + 0.01*float(rhs.cents);
+	int amt1 = 100*dollars + cents;
+	int amt2 = 100*rhs.dollars + rhs.cents;
 	if (amt1 < amt2) {
 		return true;
 	}
@@ -44,8 +56,8 @@ bool Money::operator<(const Money rhs) {
 	}
 }
 bool Money::operator>(const Money rhs) {
-	float amt1 = float(dollars) + 0.01*float(cents);
-	float amt2 = float(rhs.dollars) + 0.01*float(rhs.cents);
+	int amt1 = 100*dollars + cents;
+	int amt2 = 100*rhs.dollars + rhs.cents;
 	if (amt1 > amt2) {
 		return true;
 	}

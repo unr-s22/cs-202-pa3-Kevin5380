@@ -20,7 +20,7 @@ int main(){
 
     cout << account << endl;
 
-    return 0;
+    
     
 	//testing that Money class works
 	//TODO: clean this up
@@ -41,4 +41,5 @@ int main(){
 	std::cout << "Greater than or equal to (true): " << (m2 >= m3) << std::endl;
 	std::cout << "Less than or equal to (false): " << (m1 <= m2) << std::endl;
 	std::cout << "Less than or equal to (true): " << (m2 <= m3) << std::endl;
+	return 0;
 }
