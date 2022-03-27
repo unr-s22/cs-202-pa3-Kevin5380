@@ -15,7 +15,7 @@ Money::~Money() {}
 Money Money::operator+(const Money rhs) {
 	int new_cents = cents + rhs.cents;
 	int new_dollars = dollars + rhs.dollars;
-	if (new_cents > 100) {
+	if (new_cents >= 100) {
 		new_cents -= 100;
 		new_dollars += 1;
 	}
