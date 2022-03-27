@@ -8,11 +8,11 @@ Account::Account(Money money){
 
 Money Account::getBalance(){
     for(depositIndex; depositIndex < deposits.size(); depositIndex++){
-        balance + deposits[depositIndex];
+        balance = balance + deposits[depositIndex];
     }
 
     for(withdrawalIndex; withdrawalIndex < withdrawals.size(); withdrawalIndex++){
-        balance - deposits[withdrawalIndex];
+        balance = balance - withdrawals[withdrawalIndex];
     }
 
     return balance;
@@ -34,7 +34,7 @@ ostream& operator << (std::ostream& out, Account& account){
     out << "--------------------" << endl;
 
     for(int i = 0; i < account.deposits.size(); i++){
-        out << "(" << i << ") " << account.deposits[i] << endl;
+        out << "(" << (i + 1) << ") " << account.deposits[i] << endl;
     }
 
     out << "--------------------------" << endl;
@@ -42,7 +42,7 @@ ostream& operator << (std::ostream& out, Account& account){
     out << "--------------------------" << endl;
 
     for(int i = 0; i < account.withdrawals.size(); i++){
-        out << "(" << i << ") " << account.withdrawals[i] << endl;
+        out << "(" << (i + 1) << ") " << account.withdrawals[i] << endl;
     }
 
     out << "----" << endl;
