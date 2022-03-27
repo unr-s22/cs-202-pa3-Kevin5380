@@ -30,7 +30,7 @@ int main(){
 	Money m5(1,2);
 
 	//+ tests
-	std::cout << "Addition test with two positive values:" << Money(20, 3) + Money(3, 99) << std::endl;
+	std::cout << "Addition test with two positive values: " << Money(20, 3) + Money(3, 99) << std::endl;
 	std::cout << "Addition test with one negative value and a positive result: " << Money(20, 3) + Money(3, 99, true) << std::endl;
 	std::cout << "Addition test with one negative value and a negative result: " << Money(20, 3, true) + Money(3, 99) << std::endl;
 	std::cout << "Addition test with two negative values and a negative result: " << Money(20, 3, true) + Money(3, 99, true) << std::endl;
