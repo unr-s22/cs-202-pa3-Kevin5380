@@ -1,96 +1,93 @@
 #include "Money.h"
+#include <iomanip>
 //default constructor
 Money::Money(){
     dollars = 0;
     cents = 0;
+	neg = false;
 }
 //parameterized constructor
 Money::Money(int newDollars, int newCents) {
 	dollars = newDollars;
 	cents = newCents;
+	neg = false;
+}
+//parameterized constructor with bool
+Money::Money(int newDollars, int newCents, bool n) {
+	dollars = newDollars;
+	cents = newCents;
+	neg = n;
 }
 //destructor
 Money::~Money() {}
 //operator overloads
 Money Money::operator+(const Money rhs) {
-	int new_cents = cents + rhs.cents;
-	int new_dollars = dollars + rhs.dollars;
-	if (new_cents >= 100) {
-		new_cents -= 100;
-		new_dollars += 1;
-	}
-	return Money(new_dollars, new_cents);
+	int amt1, amt2, resultDollars, resultCents, resultAmt;
+	bool resultBool;
+	//fancy logic to determine the sum, considering that the result and/or input(s) could be negative
+	amt1 = 100*dollars + cents;
+	if (neg) {amt1 *= -1;}
+	amt2 = 100*rhs.dollars + rhs.cents;
+	if (rhs.neg) {amt2 *= -1;}
+	resultAmt = amt1 + amt2;
+	resultBool = resultAmt < 0;
+	//force it to be positive
+	if (resultBool) {resultAmt *= -1;}
+	resultDollars = resultAmt / 100;	
+	resultCents = resultAmt % 100;
+	return Money(resultDollars, resultCents, resultBool);
 }
-//TODO: round off the value to 2 decimal places
 Money Money::operator-(const Money rhs) {
-	/*
-	int amt1 = 100*dollars + cents;
-	int amt2 = 100*rhs.dollars + rhs.cents;
-	return (float(amt1) - amt2)/100*/
-	int new_cents = cents - rhs.cents;
-	int new_dollars = dollars - rhs.dollars;
-	if (new_cents < 0) {
-		new_cents += 100;
-		new_dollars -= 1;
-	}
-	return Money(new_dollars, new_cents);
+	int amt1, amt2, resultDollars, resultCents, resultAmt;
+	bool resultBool;
+	//fancy logic to determine the difference, considering that the result and/or input(s) could be negative
+	amt1 = 100*dollars + cents;
+	if (neg) {amt1 *= -1;}
+	amt2 = 100*rhs.dollars + rhs.cents;
+	if (rhs.neg) {amt2 *= -1;}
+	resultAmt = amt1 - amt2;
+	resultBool = resultAmt < 0;
+	//force it to be positive
+	if (resultBool) {resultAmt *= -1;}
+	resultDollars = resultAmt / 100;	
+	resultCents = resultAmt % 100;
+	return Money(resultDollars, resultCents, resultBool);
 }
 bool Money::operator==(const Money rhs) {
-	int amt1 = 100*dollars + cents;
-	int amt2 = 100*rhs.dollars + rhs.cents;
-	if (amt1 == amt2) {
-		return true;
-	}
-	else {
-		return false;
-	}
+	int amt1, amt2;
+	amt1 = 100*dollars + cents;
+	if (neg) {amt1 *= -1;}
+	amt2 = 100*rhs.dollars + rhs.cents;
+	if (rhs.neg) {amt2 *= -1;}
+	return amt1 == amt2;
 }
 bool Money::operator<(const Money rhs) {
-	int amt1 = 100*dollars + cents;
-	int amt2 = 100*rhs.dollars + rhs.cents;
-	if (amt1 < amt2) {
-		return true;
-	}
-	else {
-		return false;
-	}
+	int amt1, amt2;
+	amt1 = 100*dollars + cents;
+	if (neg) {amt1 *= -1;}
+	amt2 = 100*rhs.dollars + rhs.cents;
+	if (rhs.neg) {amt2 *= -1;}
+	return amt1 < amt2;
 }
 bool Money::operator>(const Money rhs) {
-	int amt1 = 100*dollars + cents;
-	int amt2 = 100*rhs.dollars + rhs.cents;
-	if (amt1 > amt2) {
-		return true;
-	}
-	else {
-		return false;
-	}
+	int amt1, amt2;
+	amt1 = 100*dollars + cents;
+	if (neg) {amt1 *= -1;}
+	amt2 = 100*rhs.dollars + rhs.cents;
+	if (rhs.neg) {amt2 *= -1;}
+	return amt1 > amt2;
 }
 bool Money::operator<=(const Money rhs) {
-	if (*this < rhs || *this == rhs) {
-		return true;
-	}
-	else {
-		return false;
-	}
+	return *this < rhs || *this == rhs;
 }
 bool Money::operator>=(const Money rhs) {
-	if (*this > rhs || *this == rhs) {
-		return true;
-	}
-	else {
-		return false;
-	}
+	return *this > rhs || *this == rhs;
 }
 bool Money::operator!=(const Money rhs) {
-	if (!(*this == rhs)) {
-		return true;
-	}
-	else {
-		return false;
-	}
+	return !(*this == rhs);
 }
 
 std::ostream& operator << (std::ostream& out, const Money& money){
-    out << "$" << money.dollars << "." << money.cents;
+	out << ((money.neg)?"-":"") << "$" << money.dollars << "." << std::setfill('0') << std::setw(2) << money.cents;
     return out;
 }
