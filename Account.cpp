@@ -7,11 +7,11 @@ Account::Account(Money money){
 }
 
 Money Account::getBalance(){
-    for(depositIndex; depositIndex < deposits.size(); depositIndex++){
+    for(; depositIndex < deposits.size(); depositIndex++){
         balance = balance + deposits[depositIndex];
     }
 
-    for(withdrawalIndex; withdrawalIndex < withdrawals.size(); withdrawalIndex++){
+    for(; withdrawalIndex < withdrawals.size(); withdrawalIndex++){
         balance = balance - withdrawals[withdrawalIndex];
     }
 
